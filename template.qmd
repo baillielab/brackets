@@ -6,10 +6,6 @@ format: md
 
 # The big Header at the top
 
-## A header which doesn't have any content [Ahmad]
-
-Apart from this paragraph, with no name. 
-
 ## An actual list of tasks [JemimaBobbyJoe]
 
 - [X] the task is complete [Ahmad]
