@@ -138,6 +138,7 @@ if __name__ == "__main__":
     ignored_files.append(os.path.split(output_file)[-1])
     input_files = readfiles(input_filepath)
     final_dict = {}
+    print ("ignored_files", "|".join(ignored_files))
     for input_file in input_files:
         print (input_file)
         thisdir, filename = os.path.split(input_file)
