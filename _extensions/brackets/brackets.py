@@ -47,7 +47,8 @@ def remove_yaml(theselines):
     return theselines
 
 def process_line(line, header_stack, name_dict, header_match):
-    bracketed_contents = re.findall(r'\[(.*?)\]', line)
+    #bracketed_contents = re.findall(r'\[(.*?)\]', line)
+    bracketed_contents = re.findall(r'\[(?!.*?\(http)(.*?)\]', line)
     for content in bracketed_contents:
         if should_ignore(content):
             continue
@@ -105,13 +106,15 @@ def prune_headers(name_dict):
 def format_output(name_dict):
     output = []
     for name, entries in name_dict.items():
+        if name.strip() == '':
+            continue
         output.append(f"# {name}\n")
         for entry in entries:
             headers = " > ".join([h for h in entry["headers"]])
             if len(headers.replace(">","").strip()) > 0:
-                output.append(f"{headers}\n")
+                output.append(f"\n{headers}\n")
             if len(entry['content'].strip()) > 0:
-                output.append(f"{entry['content']}")
+                output.append(f"{entry['content']}  \n".strip())
         output.append("")
     return "\n".join(output)
 
