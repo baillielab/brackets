@@ -135,7 +135,7 @@ def readfiles(input_path):
 if __name__ == "__main__":
     input_filepath = sys.argv[1]
     output_file = sys.argv[2]
-    ignored_files.append(output_file)
+    ignored_files.append(os.path.split(output_file)[-1])
     input_files = readfiles(input_filepath)
     final_dict = {}
     for input_file in input_files:
