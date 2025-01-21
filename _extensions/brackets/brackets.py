@@ -172,6 +172,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     input_filepath = args.input_filepath
+    output_file = args.output_file
     if output_file == "<use-default>":
         output_file = os.path.join(os.path.split(input_filepath)[0], default_output_filename)
     ignored_filenames.append(os.path.split(output_file)[-1])
