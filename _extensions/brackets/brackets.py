@@ -160,8 +160,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "output_file",
         nargs="?",
-        default=default_output_filename,
-        help="Path to the output file. Defaults to 'auto-brackets.md'"
+        default="<use-default>",
+        help="Path to the output file. Defaults to '<input_filepath>/auto-brackets.md'"
     )
     parser.add_argument(
         "-r", "--recursive",
@@ -172,7 +172,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     input_filepath = args.input_filepath
-    output_file = args.output_file
+    if output_file == "<use-default>":
+        output_file = os.path.join(os.path.split(input_filepath)[0], default_output_filename)
     ignored_filenames.append(os.path.split(output_file)[-1])
     input_files = readfiles(input_filepath, recursive=args.recursive)
 
