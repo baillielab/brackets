@@ -174,9 +174,15 @@ if __name__ == "__main__":
     input_filepath = args.input_filepath
     output_file = args.output_file
     if output_file == "<use-default>":
-        output_file = os.path.join(os.path.split(input_filepath)[0], default_output_filename)
+        if os.path.isdir(input_filepath):
+            default_dir = input_filepath
+        else:
+            default_dir = os.path.split(input_filepath)[0]
+        output_file = os.path.join(default_dir, default_output_filename)
     ignored_filenames.append(os.path.split(output_file)[-1])
     input_files = readfiles(input_filepath, recursive=args.recursive)
+
+    print (f"Saving to output file: {output_file}")
 
     final_dict = {}
     print ("ignored_filenames: ", "|".join(ignored_filenames))
